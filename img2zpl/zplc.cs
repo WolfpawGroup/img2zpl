@@ -241,10 +241,10 @@ namespace img2zpl
 			blackLimit = (percentage * 768 / 100);
 		}
 
-		public string fixZpl(string zpl)
+		/*public string fixZpl(string zpl)
 		{
 
-		}
+		}*/
 
 	}
 }
