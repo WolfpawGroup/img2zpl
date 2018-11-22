@@ -14,49 +14,51 @@ namespace img2zpl
 		private int total;
 		private int widthBytes;
 		private bool compressHex = false;
-		private static Dictionary<string, int> mapCode = new Dictionary<string, int>();
+		private static Dictionary<int, string> mapCode = new Dictionary<int, string>();
 
 		public zplc()
 		{
-			mapCode.Add("G", 1);
-			mapCode.Add("H", 2);
-			mapCode.Add("I", 3);
-			mapCode.Add("J", 4);
-			mapCode.Add("K", 5);
-			mapCode.Add("L", 6);
-			mapCode.Add("M", 7);
-			mapCode.Add("N", 8);
-			mapCode.Add("O", 9);
-			mapCode.Add("P", 10);
-			mapCode.Add("Q", 11);
-			mapCode.Add("R", 12);
-			mapCode.Add("S", 13);
-			mapCode.Add("T", 14);
-			mapCode.Add("U", 15);
-			mapCode.Add("V", 16);
-			mapCode.Add("W", 17);
-			mapCode.Add("X", 18);
-			mapCode.Add("Y", 19);
-			mapCode.Add("g", 20);
-			mapCode.Add("h", 40);
-			mapCode.Add("i", 60);
-			mapCode.Add("j", 80);
-			mapCode.Add("k", 100);
-			mapCode.Add("l", 120);
-			mapCode.Add("m", 140);
-			mapCode.Add("n", 160);
-			mapCode.Add("o", 180);
-			mapCode.Add("p", 200);
-			mapCode.Add("q", 220);
-			mapCode.Add("r", 240);
-			mapCode.Add("s", 260);
-			mapCode.Add("t", 280);
-			mapCode.Add("u", 300);
-			mapCode.Add("v", 320);
-			mapCode.Add("w", 340);
-			mapCode.Add("x", 360);
-			mapCode.Add("y", 380);
-			mapCode.Add("z", 400);
+			mapCode.Add(1	, "G");
+			mapCode.Add(2	, "H");
+			mapCode.Add(3	, "I");
+			mapCode.Add(4	, "J");
+			mapCode.Add(5	, "K");
+			mapCode.Add(6	, "L");
+			mapCode.Add(7	, "M");
+			mapCode.Add(8	, "N");
+			mapCode.Add(9	, "O");
+			mapCode.Add(10	, "P");
+			mapCode.Add(11	, "Q");
+			mapCode.Add(12	, "R");
+			mapCode.Add(13	, "S");
+			mapCode.Add(14	, "T");
+			mapCode.Add(15	, "U");
+			mapCode.Add(16	, "V");
+			mapCode.Add(17	, "W");
+			mapCode.Add(18	, "X");
+			mapCode.Add(19	, "Y");
+			mapCode.Add(20	, "g");
+			mapCode.Add(40	, "h");
+			mapCode.Add(60	, "i");
+			mapCode.Add(80	, "j");
+			mapCode.Add(100	, "k");
+			mapCode.Add(120	, "l");
+			mapCode.Add(140	, "m");
+			mapCode.Add(160	, "n");
+			mapCode.Add(180	, "o");
+			mapCode.Add(200	, "p");
+			mapCode.Add(220	, "q");
+			mapCode.Add(240	, "r");
+			mapCode.Add(260	, "s");
+			mapCode.Add(280	, "t");
+			mapCode.Add(300	, "u");
+			mapCode.Add(320	, "v");
+			mapCode.Add(340	, "w");
+			mapCode.Add(360	, "x");
+			mapCode.Add(380	, "y");
+			mapCode.Add(400	, "z");
+
+			mapCode.Reverse();
 		}
 
 		public string convertFromImage(Bitmap image, bool addHeaderFooter)
@@ -66,6 +68,8 @@ namespace img2zpl
 			{
 				hexAscii = encodeHexAscii(hexAscii);
 			}
+
+			hexAscii = fixZpl(hexAscii);
 
 			string zplCode = "^GFA," + total + "," + total + "," + widthBytes + ", " + hexAscii;
 
@@ -172,10 +176,10 @@ namespace img2zpl
 					{
 						int multi20 = (counter / 20) * 20;
 						int resto20 = (counter % 20);
-						sbLinea.Append(mapCode.Where(x => x.Value == multi20));
+						sbLinea.Append(mapCode[multi20]);
 						if (resto20 != 0)
 						{
-							sbLinea.Append(mapCode.Where(x => x.Value == resto20)).Append(aux);
+							sbLinea.Append(mapCode[resto20]).Append(aux);
 						}
 						else
 						{
@@ -184,7 +188,7 @@ namespace img2zpl
 					}
 					else
 					{
-						sbLinea.Append(mapCode.Where(x => x.Value == counter)).Append(aux);
+						sbLinea.Append(mapCode[counter]).Append(aux);
 					}
 					counter = 1;
 					firstChar = true;
@@ -210,10 +214,10 @@ namespace img2zpl
 					{
 						int multi20 = (counter / 20) * 20;
 						int resto20 = (counter % 20);
-						sbLinea.Append(mapCode.Where(x => x.Value == multi20));
+						sbLinea.Append(mapCode[multi20]);
 						if (resto20 != 0)
 						{
-							sbLinea.Append(mapCode.Where(x => x.Value == resto20)).Append(aux);
+							sbLinea.Append(mapCode[resto20]).Append(aux);
 						}
 						else
 						{
@@ -222,7 +226,7 @@ namespace img2zpl
 					}
 					else
 					{
-						sbLinea.Append(mapCode.Where(x => x.Value == counter)).Append(aux);
+						sbLinea.Append(mapCode[counter]).Append(aux);
 					}
 					counter = 1;
 					aux = code[i];
@@ -241,10 +245,57 @@ namespace img2zpl
 			blackLimit = (percentage * 768 / 100);
 		}
 
-		/*public string fixZpl(string zpl)
+		public string calculateCharacterNum(int i)
 		{
+			string ret = "";
 
-		}*/
+			while(i > 0)
+			{
+				foreach(KeyValuePair<int, string> kvp in mapCode.Reverse())
+				{
+					if(i >= kvp.Key)
+					{ i -= kvp.Key; ret += kvp.Value; break; }
+				}
+			}
+
+			return ret;
+		}
+
+		public string fixZpl(string zpl)
+		{
+			string ret = "";
+			char chr = '\0';
+			int chrcount = 0;
+
+			foreach(char c in zpl)
+			{
+				if(c != chr)
+				{
+					if (chr != '\0')
+					{
+						if (chrcount > 1)
+						{
+							ret += calculateCharacterNum(chrcount) + chr.ToString();
+						}
+						else
+						{
+							ret += chr.ToString();
+						}
+					}
+
+					chr = c;
+					chrcount = 1;
+				}
+				else
+				{
+					chrcount++;
+				}
+			}
+
+			ret = ret.Replace("\n", "");
+
+			return ret;
+		}
 
 	}
 }

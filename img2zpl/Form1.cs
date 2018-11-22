@@ -12,6 +12,7 @@ namespace img2zpl
 {
 	public partial class Form1 : Form
 	{
+		zplc z = new zplc();
 		public Bitmap bmp = null;
 		public string fileName = "";
 
@@ -116,8 +117,13 @@ namespace img2zpl
 
 		private void btn_ConvertToZebra_Click(object sender, EventArgs e)
 		{
-			zplc z = new zplc();
+			
 			rtb_Zebra.Text = z.convertFromImage(bmp, true);
+		}
+
+		private void btn_preview_Click(object sender, EventArgs e)
+		{
+			
 		}
 	}
 }
