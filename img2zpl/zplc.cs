@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace img2zpl
 {
@@ -61,28 +63,56 @@ namespace img2zpl
 			mapCode.Reverse();
 		}
 
-		public string convertFromImage(Bitmap image, bool addHeaderFooter)
+		public string convertFromImage(Bitmap image, bool addHeaderFooter = false, bool compress = false, bool newlines = false, bool generatePerlCode = false)
 		{
-			string hexAscii = createBody(image);
-			if (compressHex)
-			{
-				hexAscii = encodeHexAscii(hexAscii);
-			}
+			setBlacknessLimitPercentage(59);	//TODO: make adjustable
 
-			hexAscii = fixZpl(hexAscii);
-
+			string hexAscii = createBody(image, newlines);
+			if (compress) { hexAscii = encodeHexAscii(hexAscii,newlines); }
+			
 			string zplCode = "^GFA," + total + "," + total + "," + widthBytes + ", " + hexAscii;
 
 			if (addHeaderFooter)
 			{
 				string header = "^XA " + "^FO0,0^GFA," + total + "," + total + "," + widthBytes + ", ";
 				string footer = "^FS" + "^XZ";
-				zplCode = header + zplCode + footer;
+				zplCode = header + "\n" + zplCode + "\n" + footer;
 			}
+
+			if (generatePerlCode)
+			{
+				string outp = "my $zpl = ";
+
+				if (newlines)
+				{
+					foreach(string s in zplCode.Split('\n'))
+					{
+						outp += "\t\"" + s + "\"";
+
+						if(s != zplCode.Split('\n').Last())
+						{
+							outp += ". \n";
+						}
+						else
+						{
+							outp += ";\n";
+						}
+					}
+
+					
+				}
+				else
+				{
+					outp += "\"" + zplCode + "\";";
+				}
+
+				zplCode = outp;
+			}
+
 			return zplCode;
 		}
 
-		private string createBody(Bitmap bitmapImage)
+		private string createBody(Bitmap bitmapImage, bool newline)
 		{
 			StringBuilder sb = new StringBuilder();
 			int height = bitmapImage.Height;
@@ -105,9 +135,6 @@ namespace img2zpl
 				for (int w = 0; w < width; w++)
 				{
 					rgb = bitmapImage.GetPixel(w, h);
-					//red = (rgb >> 16) & 0x000000FF;
-					//green = (rgb >> 8) & 0x000000FF;
-					//blue = (rgb) & 0x000000FF;
 					red = rgb.R;
 					green = rgb.G;
 					blue = rgb.B;
@@ -127,7 +154,7 @@ namespace img2zpl
 						index = 0;
 					}
 				}
-				sb.Append("\n");
+				if (newline) { sb.Append("\n"); }
 			}
 			return sb.ToString();
 		}
@@ -145,8 +172,9 @@ namespace img2zpl
 			}
 		}
 
-		private string encodeHexAscii(string code)
+		private string encodeHexAscii(string code, bool newline)
 		{
+			if (!code.EndsWith("\n")) { code = code + "\n"; }
 			int maxlinea = widthBytes * 2;
 			StringBuilder sbCode = new StringBuilder();
 			StringBuilder sbLinea = new StringBuilder();
@@ -190,16 +218,19 @@ namespace img2zpl
 					{
 						sbLinea.Append(mapCode[counter]).Append(aux);
 					}
+					if (newline) { sbLinea.Append("\n"); }
 					counter = 1;
 					firstChar = true;
 					if (sbLinea.ToString() == previousLine)
 					{
-						sbCode.Append(":");
+						if (newline) { sbCode.Append(":\n"); }
+						else { sbCode.Append(":"); }
 					}
 					else
 					{
 						sbCode.Append(sbLinea.ToString());
 					}
+					
 					previousLine = sbLinea.ToString();
 					sbLinea.Length = 0;
 					continue;
@@ -226,7 +257,14 @@ namespace img2zpl
 					}
 					else
 					{
-						sbLinea.Append(mapCode[counter]).Append(aux);
+						if(counter > 1)
+						{
+							sbLinea.Append(mapCode[counter]).Append(aux);
+						}
+						else
+						{
+							sbLinea.Append(aux);
+						}
 					}
 					counter = 1;
 					aux = code[i];
@@ -248,7 +286,7 @@ namespace img2zpl
 		public string calculateCharacterNum(int i)
 		{
 			string ret = "";
-
+			
 			while(i > 0)
 			{
 				foreach(KeyValuePair<int, string> kvp in mapCode.Reverse())
@@ -297,5 +335,33 @@ namespace img2zpl
 			return ret;
 		}
 
+	}
+
+	public class myCM : System.Windows.Forms.ContextMenuStrip
+	{
+		public bool isopen = false;
+		
+		public myCM()
+		{
+			AutoClose = false;
+		}
+
+		protected override void OnOpened(EventArgs e)
+		{
+			base.OnOpened(e);
+			isopen = true;
+		}
+
+		protected override void OnOpening(CancelEventArgs e)
+		{
+			base.OnOpening(e);
+			isopen = true;
+		}
+
+		protected override void OnClosed(ToolStripDropDownClosedEventArgs e)
+		{
+			base.OnClosed(e);
+			isopen = false;
+		}
 	}
 }
