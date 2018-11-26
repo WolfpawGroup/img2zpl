@@ -53,5 +53,17 @@
     <Setting Name="s_FGColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
     </Setting>
+    <Setting Name="s_Font_Default" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Consolas, 8.25pt</Value>
+    </Setting>
+    <Setting Name="s_BGColor_Default" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="s_FGColor_Default" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="s_BlackLevel" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">59</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -31,5 +31,15 @@ namespace img2zpl
 			if (bmp1 != null) { pb_Image1.Image = bmp1; }
 			if(bmp2 != null) { pb_Image2.Image = bmp2; }
 		}
+
+		private void btn_Image1_Copy_Click(object sender, EventArgs e)
+		{
+			Clipboard.SetImage(pb_Image1.Image);
+		}
+
+		private void btn_Image2_Copy_Click(object sender, EventArgs e)
+		{
+			Clipboard.SetImage(pb_Image2.Image);
+		}
 	}
 }

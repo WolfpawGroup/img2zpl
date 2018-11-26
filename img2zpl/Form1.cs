@@ -23,6 +23,8 @@ namespace img2zpl
 		public bool headerfooter = false;
 		public bool compress = false;
 		public bool loaded = false;
+		public bool menuOpened = false;
+		public bool invertColors = false;
 
 		public Form1()
 		{
@@ -57,6 +59,8 @@ namespace img2zpl
 				Left = Properties.Settings.Default.s_Left;
 				Top = Properties.Settings.Default.s_Top;
 			}
+
+			tb_Blackness.Value = Properties.Settings.Default.s_BlackLevel;
 
 			if(Properties.Settings.Default.s_Width + Properties.Settings.Default.s_Height == 0)
 			{
@@ -215,7 +219,7 @@ namespace img2zpl
 			{
 				Bitmap bbmp = bmp;
 				if (cb_Resize.Checked && (num_Resize_Height.Value > 0 && num_Resize_Width.Value > 0)) { bbmp = new Bitmap(bmp, new Size((int)num_Resize_Width.Value, (int)num_Resize_Height.Value)); }
-				rtb_Zebra.Text = z.convertFromImage(bbmp, btn_Settings_AddHeaderFooter.Checked, btn_Settings_CompressHex.Checked, btn_Settings_SeparateToLines.Checked, btn_Settings_GenerateAsPerlCode.Checked);
+				rtb_Zebra.Text = z.convertFromImage(bbmp, tb_Blackness.Value, btn_Settings_AddHeaderFooter.Checked, btn_Settings_CompressHex.Checked, btn_Settings_SeparateToLines.Checked, btn_Settings_GenerateAsPerlCode.Checked);
 			}
 		}
 
@@ -405,7 +409,7 @@ namespace img2zpl
 
 		private void btn_Settings_Misc_Font_Click(object sender, EventArgs e)
 		{
-			cm_Settings.Close();
+			closecm();
 			FontDialog fd = new FontDialog();
 			fd.AllowSimulations = true;
 			fd.AllowVectorFonts = true;
@@ -431,7 +435,7 @@ namespace img2zpl
 
 		private void btn_Settings_Misc_FGColor_Click(object sender, EventArgs e)
 		{
-			cm_Settings.Close();
+			closecm();
 			ColorDialog cd = new ColorDialog();
 			cd.AnyColor = true;
 			cd.AllowFullOpen = true;
@@ -448,7 +452,7 @@ namespace img2zpl
 
 		private void btn_Settings_Misc_BGColor_Click(object sender, EventArgs e)
 		{
-			cm_Settings.Close();
+			closecm();
 			ColorDialog cd = new ColorDialog();
 			cd.AnyColor = true;
 			cd.AllowFullOpen = true;
@@ -535,6 +539,54 @@ namespace img2zpl
 		private void btn_ConvertToImage_Click(object sender, EventArgs e)
 		{
 			MessageBox.Show("This action is not yet implemented.\r\nPlease check later!","Not implemented!");
+		}
+
+		private void btn_MoreMenu_Click(object sender, EventArgs e)
+		{
+			menuOpened = !menuOpened;
+			handleMenu();
+		}
+
+		public void handleMenu()
+		{
+			if (menuOpened)
+			{
+				rtb_Zebra.Top += 30;
+				rtb_Zebra.Height -= 30;
+			}
+			else
+			{
+				rtb_Zebra.Top -= 30;
+				rtb_Zebra.Height += 30;
+			}
+		}
+
+		private void tb_Blackness_ValueChanged(object sender, EventArgs e)
+		{
+			lbl_BlackLevelPercent.Text = tb_Blackness.Value + "%";
+			Properties.Settings.Default.s_BlackLevel = tb_Blackness.Value;
+			save();
+		}
+
+		private void btn_Settings_Misc_Reset_Click(object sender, EventArgs e)
+		{
+			Properties.Settings.Default.s_Font = Properties.Settings.Default.s_Font_Default;
+			Properties.Settings.Default.s_FGColor = Properties.Settings.Default.s_FGColor_Default;
+			Properties.Settings.Default.s_BGColor = Properties.Settings.Default.s_BGColor_Default;
+			save();
+			loadSettings();
+			settingsApply();
+			closecm();
+		}
+
+		private void btn_Settings_Misc_InvertColors_Click(object sender, EventArgs e)
+		{
+			Color c = Properties.Settings.Default.s_BGColor;
+			Properties.Settings.Default.s_BGColor = Properties.Settings.Default.s_FGColor;
+			Properties.Settings.Default.s_FGColor = c;
+			save();
+			settingsApply();
+			closecm();
 		}
 	}
 }

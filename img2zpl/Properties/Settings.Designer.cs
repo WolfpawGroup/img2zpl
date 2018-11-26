@@ -226,5 +226,53 @@ namespace img2zpl.Properties {
                 this["s_FGColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Consolas, 8.25pt")]
+        public global::System.Drawing.Font s_Font_Default {
+            get {
+                return ((global::System.Drawing.Font)(this["s_Font_Default"]));
+            }
+            set {
+                this["s_Font_Default"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color s_BGColor_Default {
+            get {
+                return ((global::System.Drawing.Color)(this["s_BGColor_Default"]));
+            }
+            set {
+                this["s_BGColor_Default"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color s_FGColor_Default {
+            get {
+                return ((global::System.Drawing.Color)(this["s_FGColor_Default"]));
+            }
+            set {
+                this["s_FGColor_Default"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("59")]
+        public int s_BlackLevel {
+            get {
+                return ((int)(this["s_BlackLevel"]));
+            }
+            set {
+                this["s_BlackLevel"] = value;
+            }
+        }
     }
 }
