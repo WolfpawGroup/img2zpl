@@ -218,9 +218,17 @@ namespace img2zpl
 		{
 			if (rtb_Zebra.Text != "")
 			{
+				int dpi1 = 96;
+				int dpi2 = 96;
 
-				int w = resizedSize.Width / 96;
-				int h = resizedSize.Height / 96;
+				using (Graphics gr = this.CreateGraphics())
+				{
+					dpi1 = (int)gr.DpiX;
+					dpi2 = (int)gr.DpiY;
+				}
+
+				int w = resizedSize.Width / dpi1;
+				int h = resizedSize.Height / dpi2;
 				string url = "http://api.labelary.com/v1/printers/8dpmm/labels/{width}x{height}/{index}/"; // /zpl
 				byte[] zpl = Encoding.UTF8.GetBytes(rtb_Zebra.Text);
 				string url1 = url.Replace("{width}", w + "").Replace("{height}", h + "").Replace("{index}", "0");
