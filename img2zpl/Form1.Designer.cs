@@ -58,7 +58,6 @@
 			this.btn_Settings_CompressHex = new System.Windows.Forms.ToolStripMenuItem();
 			this.btn_Settings_SeparateToLines = new System.Windows.Forms.ToolStripMenuItem();
 			this.btn_Settings_GenerateAsPerlCode = new System.Windows.Forms.ToolStripMenuItem();
-			this.tt_ToolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.tts_Sep2 = new System.Windows.Forms.ToolStripSeparator();
 			this.btn_Settings_LoadLastImage = new System.Windows.Forms.ToolStripMenuItem();
 			this.tts_Sep3 = new System.Windows.Forms.ToolStripSeparator();
@@ -66,6 +65,7 @@
 			this.btn_Settings_Misc_Font = new System.Windows.Forms.ToolStripMenuItem();
 			this.btn_Settings_Misc_FGColor = new System.Windows.Forms.ToolStripMenuItem();
 			this.btn_Settings_Misc_BGColor = new System.Windows.Forms.ToolStripMenuItem();
+			this.tt_ToolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.cb_Help = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.pb_Image)).BeginInit();
 			this.p_Resize.SuspendLayout();
@@ -187,6 +187,7 @@
 			this.btn_ConvertToImage.Text = "← Convert";
 			this.tt_ToolTip.SetToolTip(this.btn_ConvertToImage, "Generate image from the ZPL code (Only image without other data)");
 			this.btn_ConvertToImage.UseVisualStyleBackColor = true;
+			this.btn_ConvertToImage.Click += new System.EventHandler(this.btn_ConvertToImage_Click);
 			// 
 			// btn_Zebra_Copy
 			// 
@@ -449,7 +450,7 @@
 			// btn_Settings_Misc_Font
 			// 
 			this.btn_Settings_Misc_Font.Name = "btn_Settings_Misc_Font";
-			this.btn_Settings_Misc_Font.Size = new System.Drawing.Size(180, 22);
+			this.btn_Settings_Misc_Font.Size = new System.Drawing.Size(170, 22);
 			this.btn_Settings_Misc_Font.Text = "Font";
 			this.btn_Settings_Misc_Font.ToolTipText = "The font used for the ZPL code";
 			this.btn_Settings_Misc_Font.Click += new System.EventHandler(this.btn_Settings_Misc_Font_Click);
@@ -457,7 +458,7 @@
 			// btn_Settings_Misc_FGColor
 			// 
 			this.btn_Settings_Misc_FGColor.Name = "btn_Settings_Misc_FGColor";
-			this.btn_Settings_Misc_FGColor.Size = new System.Drawing.Size(180, 22);
+			this.btn_Settings_Misc_FGColor.Size = new System.Drawing.Size(170, 22);
 			this.btn_Settings_Misc_FGColor.Text = "Foreground Color";
 			this.btn_Settings_Misc_FGColor.ToolTipText = "Foreground color of the ZPL code text area";
 			this.btn_Settings_Misc_FGColor.Click += new System.EventHandler(this.btn_Settings_Misc_FGColor_Click);
@@ -465,7 +466,7 @@
 			// btn_Settings_Misc_BGColor
 			// 
 			this.btn_Settings_Misc_BGColor.Name = "btn_Settings_Misc_BGColor";
-			this.btn_Settings_Misc_BGColor.Size = new System.Drawing.Size(180, 22);
+			this.btn_Settings_Misc_BGColor.Size = new System.Drawing.Size(170, 22);
 			this.btn_Settings_Misc_BGColor.Text = "Background Color";
 			this.btn_Settings_Misc_BGColor.ToolTipText = "Background color of the ZPL code text area";
 			this.btn_Settings_Misc_BGColor.Click += new System.EventHandler(this.btn_Settings_Misc_BGColor_Click);

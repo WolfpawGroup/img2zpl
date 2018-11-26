@@ -128,12 +128,8 @@ namespace img2zpl
 			}
 		}
 
-		public void loadImg()
+		public void manageSize()
 		{
-			tb_ImagePath.Text = fileName;
-			bmp = (Bitmap)(new Bitmap(tb_ImagePath.Text).Clone());
-			saveImageToSettings((Image)bmp.Clone());
-			pb_Image.Image = bmp;
 			originalSize = bmp.Size;
 			resizedSize = new Size((int)num_Resize_Width.Value, (int)num_Resize_Height.Value);
 			if (num_Resize_Height.Value + num_Resize_Width.Value == 0 || cb_Resize.Checked == false)
@@ -142,6 +138,15 @@ namespace img2zpl
 				num_Resize_Height.Value = (int)originalSize.Height;
 				resizedSize = originalSize;
 			}
+		}
+
+		public void loadImg()
+		{
+			tb_ImagePath.Text = fileName;
+			bmp = (Bitmap)(new Bitmap(tb_ImagePath.Text).Clone());
+			saveImageToSettings((Image)bmp.Clone());
+			pb_Image.Image = bmp;
+			manageSize();
 
 		}
 
@@ -216,6 +221,7 @@ namespace img2zpl
 
 		private void btn_preview_Click(object sender, EventArgs e)
 		{
+			manageSize();
 			if (rtb_Zebra.Text != "")
 			{
 				int dpi1 = 96;
@@ -252,6 +258,7 @@ namespace img2zpl
 			req.Method = "POST";
 			req.ContentType = "application/x-www-form-urlencoded";
 			req.ContentLength = zpl.Length;
+			req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:63.0) Gecko/20100101 Firefox/63.0";
 
 			var requestStream = req.GetRequestStream();
 			requestStream.Write(zpl, 0, zpl.Length);
@@ -523,6 +530,11 @@ namespace img2zpl
 		private void btn_Exit_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
+		}
+
+		private void btn_ConvertToImage_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("This action is not yet implemented.\r\nPlease check later!","Not implemented!");
 		}
 	}
 }

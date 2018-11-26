@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace img2zpl
@@ -65,10 +64,11 @@ namespace img2zpl
 
 		public string convertFromImage(Bitmap image, bool addHeaderFooter = false, bool compress = false, bool newlines = false, bool generatePerlCode = false)
 		{
-			setBlacknessLimitPercentage(59);	//TODO: make adjustable
+			setBlacknessLimitPercentage(30);	//TODO: make adjustable
 
 			string hexAscii = createBody(image, newlines);
 			if (compress) { hexAscii = encodeHexAscii(hexAscii,newlines); }
+			if (!newlines) { hexAscii = hexAscii.Replace("\n", ""); }
 			
 			string zplCode = "^GFA," + total + "," + total + "," + widthBytes + ", " + hexAscii;
 
@@ -154,7 +154,8 @@ namespace img2zpl
 						index = 0;
 					}
 				}
-				if (newline) { sb.Append("\n"); }
+				//if (newline) { sb.Append("\n"); }
+				sb.Append("\n");
 			}
 			return sb.ToString();
 		}
@@ -218,13 +219,14 @@ namespace img2zpl
 					{
 						sbLinea.Append(mapCode[counter]).Append(aux);
 					}
-					if (newline) { sbLinea.Append("\n"); }
+					//if (newline) { sbLinea.Append("\n"); }
+					sbLinea.Append("\n");
 					counter = 1;
 					firstChar = true;
-					if (sbLinea.ToString() == previousLine)
+					if (previousLine != null && sbLinea.ToString().Replace("\n","") == previousLine.Replace("\n", ""))
 					{
-						if (newline) { sbCode.Append(":\n"); }
-						else { sbCode.Append(":"); }
+						if (newline)	{ sbCode.Append(":\n"); }
+						else			{ sbCode.Append(":");	}
 					}
 					else
 					{
