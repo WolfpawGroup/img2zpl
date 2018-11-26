@@ -64,7 +64,7 @@ namespace img2zpl
 
 		public string convertFromImage(Bitmap image, bool addHeaderFooter = false, bool compress = false, bool newlines = false, bool generatePerlCode = false)
 		{
-			setBlacknessLimitPercentage(30);	//TODO: make adjustable
+			setBlacknessLimitPercentage(59);	//TODO: make adjustable
 
 			string hexAscii = createBody(image, newlines);
 			if (compress) { hexAscii = encodeHexAscii(hexAscii,newlines); }
