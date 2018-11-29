@@ -29,7 +29,6 @@ namespace img2zpl
 		public string defaultZebraPrinter = "";
 		public string defaultGeneralPrinter = "";
 
-
 		public Form1()
 		{
 			InitializeComponent();
@@ -638,11 +637,15 @@ namespace img2zpl
 		private void btn_Settings_Printer_Zebra_DropDownOpening(object sender, EventArgs e)
 		{
 			btn_Settings_Printer_Zebra_Selection.DropDown.Items.Clear();
+			
 			printers = new printer().getPrinterList().Cast<string>().ToList();
 			foreach(string s in printers)
 			{
 				printerAdd("z", s);
 			}
+
+			printerAdd("z", "Print to File");
+			printerAdd("g", "Print to File");
 		}
 
 		private void btn_Settings_Printer_General_DropDownOpening(object sender, EventArgs e)
@@ -653,6 +656,37 @@ namespace img2zpl
 			{
 				printerAdd("g", s);
 			}
+		}
+
+		private void num_Resize_Width_ValueChanged(object sender, EventArgs e)
+		{
+			if (cb_LockAspectRatio.Checked)
+			{
+
+			}
+		}
+
+		private void num_Resize_Height_ValueChanged(object sender, EventArgs e)
+		{
+			if (cb_LockAspectRatio.Checked)
+			{
+
+			}
+		}
+
+		private void btn_Settings_Printer_Zebra_Setup_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void btn_Settings_Printer_Zebra_Preview_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void btn_Settings_Printer_Zebra_Print_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

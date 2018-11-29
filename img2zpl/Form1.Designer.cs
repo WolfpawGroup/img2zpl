@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.label1 = new System.Windows.Forms.Label();
 			this.tb_ImagePath = new System.Windows.Forms.TextBox();
 			this.btn_LoadImage = new System.Windows.Forms.Button();
@@ -59,7 +60,31 @@
 			this.tts_Sep02 = new System.Windows.Forms.ToolStripSeparator();
 			this.btn_Settings_LoadLastImage = new System.Windows.Forms.ToolStripMenuItem();
 			this.tts_Sep03 = new System.Windows.Forms.ToolStripSeparator();
+			this.btn_Settings_Printer = new System.Windows.Forms.ToolStripMenuItem();
+			this.tst_Settings_PrinterTitle = new System.Windows.Forms.ToolStripTextBox();
+			this.tts_Sep07 = new System.Windows.Forms.ToolStripSeparator();
+			this.btn_Settings_Printer_Zebra = new System.Windows.Forms.ToolStripMenuItem();
+			this.tst_Settings_Printer_ZebraTitle = new System.Windows.Forms.ToolStripTextBox();
+			this.tts_Sep08 = new System.Windows.Forms.ToolStripSeparator();
+			this.btn_Settings_Printer_Zebra_Selection = new System.Windows.Forms.ToolStripMenuItem();
+			this.tts_Sep09 = new System.Windows.Forms.ToolStripSeparator();
+			this.btn_Settings_Printer_Zebra_Settings = new System.Windows.Forms.ToolStripMenuItem();
+			this.btn_Settings_Printer_Zebra_Setup = new System.Windows.Forms.ToolStripMenuItem();
+			this.btn_Settings_Printer_Zebra_Preview = new System.Windows.Forms.ToolStripMenuItem();
+			this.tts_Sep10 = new System.Windows.Forms.ToolStripSeparator();
+			this.btn_Settings_Printer_Zebra_Print = new System.Windows.Forms.ToolStripMenuItem();
+			this.btn_Settings_Printer_General = new System.Windows.Forms.ToolStripMenuItem();
+			this.tst_Settings_Printer_GeneralTitle = new System.Windows.Forms.ToolStripTextBox();
+			this.tts_Sep11 = new System.Windows.Forms.ToolStripSeparator();
+			this.btn_Settings_Printer_General_Selection = new System.Windows.Forms.ToolStripMenuItem();
+			this.tts_Sep12 = new System.Windows.Forms.ToolStripSeparator();
+			this.btn_Settings_Printer_General_Settings = new System.Windows.Forms.ToolStripMenuItem();
+			this.btn_Settings_Printer_General_Setup = new System.Windows.Forms.ToolStripMenuItem();
+			this.btn_Settings_Printer_General_Preview = new System.Windows.Forms.ToolStripMenuItem();
+			this.tts_Sep13 = new System.Windows.Forms.ToolStripSeparator();
+			this.btn_Settings_Printer_General_Print = new System.Windows.Forms.ToolStripMenuItem();
 			this.btn_Settings_Misc = new System.Windows.Forms.ToolStripMenuItem();
+			this.tst_Settings_MiscTitle = new System.Windows.Forms.ToolStripTextBox();
 			this.btn_Settings_Misc_Font = new System.Windows.Forms.ToolStripMenuItem();
 			this.tts_Sep06 = new System.Windows.Forms.ToolStripSeparator();
 			this.btn_Settings_Misc_FGColor = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,30 +102,9 @@
 			this.cb_Help = new System.Windows.Forms.CheckBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.lbl_BlackLevelPercent = new System.Windows.Forms.Label();
-			this.btn_Settings_Printer = new System.Windows.Forms.ToolStripMenuItem();
-			this.btn_Settings_Printer_Zebra = new System.Windows.Forms.ToolStripMenuItem();
-			this.btn_Settings_Printer_General = new System.Windows.Forms.ToolStripMenuItem();
-			this.btn_Settings_Printer_Zebra_Setup = new System.Windows.Forms.ToolStripMenuItem();
-			this.tst_Settings_PrinterTitle = new System.Windows.Forms.ToolStripTextBox();
-			this.tst_Settings_MiscTitle = new System.Windows.Forms.ToolStripTextBox();
-			this.tst_Settings_Printer_ZebraTitle = new System.Windows.Forms.ToolStripTextBox();
-			this.tst_Settings_Printer_GeneralTitle = new System.Windows.Forms.ToolStripTextBox();
-			this.btn_Settings_Printer_Zebra_Preview = new System.Windows.Forms.ToolStripMenuItem();
-			this.btn_Settings_Printer_Zebra_Selection = new System.Windows.Forms.ToolStripMenuItem();
-			this.tts_Sep09 = new System.Windows.Forms.ToolStripSeparator();
-			this.tts_Sep08 = new System.Windows.Forms.ToolStripSeparator();
-			this.tts_Sep07 = new System.Windows.Forms.ToolStripSeparator();
-			this.tts_Sep10 = new System.Windows.Forms.ToolStripSeparator();
-			this.btn_Settings_Printer_Zebra_Print = new System.Windows.Forms.ToolStripMenuItem();
-			this.tts_Sep11 = new System.Windows.Forms.ToolStripSeparator();
-			this.btn_Settings_Printer_General_Selection = new System.Windows.Forms.ToolStripMenuItem();
-			this.tts_Sep12 = new System.Windows.Forms.ToolStripSeparator();
-			this.btn_Settings_Printer_General_Setup = new System.Windows.Forms.ToolStripMenuItem();
-			this.btn_Settings_Printer_General_Preview = new System.Windows.Forms.ToolStripMenuItem();
-			this.tts_Sep13 = new System.Windows.Forms.ToolStripSeparator();
-			this.btn_Settings_Printer_General_Print = new System.Windows.Forms.ToolStripMenuItem();
-			this.btn_Settings_Printer_Zebra_Settings = new System.Windows.Forms.ToolStripMenuItem();
-			this.btn_Settings_Printer_General_Settings = new System.Windows.Forms.ToolStripMenuItem();
+			this.prnt_PageSetupDialog = new System.Windows.Forms.PageSetupDialog();
+			this.prnt_PrintDocument = new System.Drawing.Printing.PrintDocument();
+			this.prnt_PrintPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
 			this.p_Resize.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.num_Resize_Height)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.num_Resize_Width)).BeginInit();
@@ -140,7 +144,7 @@
 			// btn_Image_Copy
 			// 
 			this.btn_Image_Copy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btn_Image_Copy.Location = new System.Drawing.Point(15, 196);
+			this.btn_Image_Copy.Location = new System.Drawing.Point(15, 221);
 			this.btn_Image_Copy.Name = "btn_Image_Copy";
 			this.btn_Image_Copy.Size = new System.Drawing.Size(75, 23);
 			this.btn_Image_Copy.TabIndex = 4;
@@ -152,7 +156,7 @@
 			// btn_Image_Save
 			// 
 			this.btn_Image_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btn_Image_Save.Location = new System.Drawing.Point(96, 196);
+			this.btn_Image_Save.Location = new System.Drawing.Point(96, 221);
 			this.btn_Image_Save.Name = "btn_Image_Save";
 			this.btn_Image_Save.Size = new System.Drawing.Size(75, 23);
 			this.btn_Image_Save.TabIndex = 5;
@@ -164,7 +168,7 @@
 			// btn_ConvertToZebra
 			// 
 			this.btn_ConvertToZebra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btn_ConvertToZebra.Location = new System.Drawing.Point(258, 196);
+			this.btn_ConvertToZebra.Location = new System.Drawing.Point(258, 221);
 			this.btn_ConvertToZebra.Name = "btn_ConvertToZebra";
 			this.btn_ConvertToZebra.Size = new System.Drawing.Size(125, 23);
 			this.btn_ConvertToZebra.TabIndex = 6;
@@ -180,7 +184,7 @@
 			this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.panel1.Location = new System.Drawing.Point(389, -2);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(3, 232);
+			this.panel1.Size = new System.Drawing.Size(3, 257);
 			this.panel1.TabIndex = 7;
 			// 
 			// rtb_Zebra
@@ -190,7 +194,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.rtb_Zebra.Location = new System.Drawing.Point(398, 34);
 			this.rtb_Zebra.Name = "rtb_Zebra";
-			this.rtb_Zebra.Size = new System.Drawing.Size(376, 156);
+			this.rtb_Zebra.Size = new System.Drawing.Size(376, 181);
 			this.rtb_Zebra.TabIndex = 8;
 			this.rtb_Zebra.Text = "";
 			this.tt_ToolTip.SetToolTip(this.rtb_Zebra, "ZPL Code");
@@ -199,7 +203,7 @@
 			// btn_ConvertToImage
 			// 
 			this.btn_ConvertToImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btn_ConvertToImage.Location = new System.Drawing.Point(398, 196);
+			this.btn_ConvertToImage.Location = new System.Drawing.Point(398, 221);
 			this.btn_ConvertToImage.Name = "btn_ConvertToImage";
 			this.btn_ConvertToImage.Size = new System.Drawing.Size(100, 23);
 			this.btn_ConvertToImage.TabIndex = 9;
@@ -211,7 +215,7 @@
 			// btn_Zebra_Copy
 			// 
 			this.btn_Zebra_Copy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btn_Zebra_Copy.Location = new System.Drawing.Point(560, 196);
+			this.btn_Zebra_Copy.Location = new System.Drawing.Point(560, 221);
 			this.btn_Zebra_Copy.Name = "btn_Zebra_Copy";
 			this.btn_Zebra_Copy.Size = new System.Drawing.Size(48, 23);
 			this.btn_Zebra_Copy.TabIndex = 10;
@@ -223,7 +227,7 @@
 			// btn_Exit
 			// 
 			this.btn_Exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_Exit.Location = new System.Drawing.Point(686, 196);
+			this.btn_Exit.Location = new System.Drawing.Point(686, 221);
 			this.btn_Exit.Name = "btn_Exit";
 			this.btn_Exit.Size = new System.Drawing.Size(88, 23);
 			this.btn_Exit.TabIndex = 11;
@@ -235,7 +239,7 @@
 			// btn_Zebra_Save
 			// 
 			this.btn_Zebra_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btn_Zebra_Save.Location = new System.Drawing.Point(506, 196);
+			this.btn_Zebra_Save.Location = new System.Drawing.Point(506, 221);
 			this.btn_Zebra_Save.Name = "btn_Zebra_Save";
 			this.btn_Zebra_Save.Size = new System.Drawing.Size(48, 23);
 			this.btn_Zebra_Save.TabIndex = 12;
@@ -247,7 +251,7 @@
 			// btn_preview
 			// 
 			this.btn_preview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btn_preview.Location = new System.Drawing.Point(614, 196);
+			this.btn_preview.Location = new System.Drawing.Point(614, 221);
 			this.btn_preview.Name = "btn_preview";
 			this.btn_preview.Size = new System.Drawing.Size(55, 23);
 			this.btn_preview.TabIndex = 13;
@@ -271,7 +275,7 @@
 			// btn_OriginalSize
 			// 
 			this.btn_OriginalSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btn_OriginalSize.Location = new System.Drawing.Point(177, 196);
+			this.btn_OriginalSize.Location = new System.Drawing.Point(177, 221);
 			this.btn_OriginalSize.Name = "btn_OriginalSize";
 			this.btn_OriginalSize.Size = new System.Drawing.Size(75, 23);
 			this.btn_OriginalSize.TabIndex = 20;
@@ -324,6 +328,7 @@
 			this.num_Resize_Height.Size = new System.Drawing.Size(55, 20);
 			this.num_Resize_Height.TabIndex = 21;
 			this.tt_ToolTip.SetToolTip(this.num_Resize_Height, "Resized Height (px)");
+			this.num_Resize_Height.ValueChanged += new System.EventHandler(this.num_Resize_Height_ValueChanged);
 			// 
 			// num_Resize_Width
 			// 
@@ -337,6 +342,7 @@
 			this.num_Resize_Width.Size = new System.Drawing.Size(55, 20);
 			this.num_Resize_Width.TabIndex = 20;
 			this.tt_ToolTip.SetToolTip(this.num_Resize_Width, "Resized Width (px)");
+			this.num_Resize_Width.ValueChanged += new System.EventHandler(this.num_Resize_Width_ValueChanged);
 			// 
 			// cm_Settings
 			// 
@@ -441,6 +447,182 @@
 			this.tts_Sep03.Name = "tts_Sep03";
 			this.tts_Sep03.Size = new System.Drawing.Size(213, 6);
 			// 
+			// btn_Settings_Printer
+			// 
+			this.btn_Settings_Printer.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tst_Settings_PrinterTitle,
+            this.tts_Sep07,
+            this.btn_Settings_Printer_Zebra,
+            this.btn_Settings_Printer_General});
+			this.btn_Settings_Printer.Name = "btn_Settings_Printer";
+			this.btn_Settings_Printer.Size = new System.Drawing.Size(216, 22);
+			this.btn_Settings_Printer.Text = "Printer Settings";
+			// 
+			// tst_Settings_PrinterTitle
+			// 
+			this.tst_Settings_PrinterTitle.BackColor = System.Drawing.Color.White;
+			this.tst_Settings_PrinterTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.tst_Settings_PrinterTitle.Enabled = false;
+			this.tst_Settings_PrinterTitle.Name = "tst_Settings_PrinterTitle";
+			this.tst_Settings_PrinterTitle.ReadOnly = true;
+			this.tst_Settings_PrinterTitle.Size = new System.Drawing.Size(100, 16);
+			this.tst_Settings_PrinterTitle.Text = "--- PRINTING ---";
+			this.tst_Settings_PrinterTitle.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// tts_Sep07
+			// 
+			this.tts_Sep07.Name = "tts_Sep07";
+			this.tts_Sep07.Size = new System.Drawing.Size(177, 6);
+			// 
+			// btn_Settings_Printer_Zebra
+			// 
+			this.btn_Settings_Printer_Zebra.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tst_Settings_Printer_ZebraTitle,
+            this.tts_Sep08,
+            this.btn_Settings_Printer_Zebra_Selection,
+            this.tts_Sep09,
+            this.btn_Settings_Printer_Zebra_Settings,
+            this.btn_Settings_Printer_Zebra_Setup,
+            this.btn_Settings_Printer_Zebra_Preview,
+            this.tts_Sep10,
+            this.btn_Settings_Printer_Zebra_Print});
+			this.btn_Settings_Printer_Zebra.Name = "btn_Settings_Printer_Zebra";
+			this.btn_Settings_Printer_Zebra.Size = new System.Drawing.Size(180, 22);
+			this.btn_Settings_Printer_Zebra.Text = "Zebra Printer";
+			this.btn_Settings_Printer_Zebra.DropDownOpening += new System.EventHandler(this.btn_Settings_Printer_Zebra_DropDownOpening);
+			// 
+			// tst_Settings_Printer_ZebraTitle
+			// 
+			this.tst_Settings_Printer_ZebraTitle.BackColor = System.Drawing.Color.White;
+			this.tst_Settings_Printer_ZebraTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.tst_Settings_Printer_ZebraTitle.Enabled = false;
+			this.tst_Settings_Printer_ZebraTitle.Name = "tst_Settings_Printer_ZebraTitle";
+			this.tst_Settings_Printer_ZebraTitle.ReadOnly = true;
+			this.tst_Settings_Printer_ZebraTitle.Size = new System.Drawing.Size(100, 16);
+			this.tst_Settings_Printer_ZebraTitle.Text = "--- ZEBRA ---";
+			this.tst_Settings_Printer_ZebraTitle.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// tts_Sep08
+			// 
+			this.tts_Sep08.Name = "tts_Sep08";
+			this.tts_Sep08.Size = new System.Drawing.Size(177, 6);
+			// 
+			// btn_Settings_Printer_Zebra_Selection
+			// 
+			this.btn_Settings_Printer_Zebra_Selection.Name = "btn_Settings_Printer_Zebra_Selection";
+			this.btn_Settings_Printer_Zebra_Selection.Size = new System.Drawing.Size(180, 22);
+			this.btn_Settings_Printer_Zebra_Selection.Text = "Printer Selection";
+			// 
+			// tts_Sep09
+			// 
+			this.tts_Sep09.Name = "tts_Sep09";
+			this.tts_Sep09.Size = new System.Drawing.Size(177, 6);
+			// 
+			// btn_Settings_Printer_Zebra_Settings
+			// 
+			this.btn_Settings_Printer_Zebra_Settings.Name = "btn_Settings_Printer_Zebra_Settings";
+			this.btn_Settings_Printer_Zebra_Settings.Size = new System.Drawing.Size(180, 22);
+			this.btn_Settings_Printer_Zebra_Settings.Text = "Printer Settings";
+			// 
+			// btn_Settings_Printer_Zebra_Setup
+			// 
+			this.btn_Settings_Printer_Zebra_Setup.Name = "btn_Settings_Printer_Zebra_Setup";
+			this.btn_Settings_Printer_Zebra_Setup.Size = new System.Drawing.Size(180, 22);
+			this.btn_Settings_Printer_Zebra_Setup.Text = "Page Setup";
+			this.btn_Settings_Printer_Zebra_Setup.Click += new System.EventHandler(this.btn_Settings_Printer_Zebra_Setup_Click);
+			// 
+			// btn_Settings_Printer_Zebra_Preview
+			// 
+			this.btn_Settings_Printer_Zebra_Preview.Name = "btn_Settings_Printer_Zebra_Preview";
+			this.btn_Settings_Printer_Zebra_Preview.Size = new System.Drawing.Size(180, 22);
+			this.btn_Settings_Printer_Zebra_Preview.Text = "Print Preview";
+			this.btn_Settings_Printer_Zebra_Preview.Click += new System.EventHandler(this.btn_Settings_Printer_Zebra_Preview_Click);
+			// 
+			// tts_Sep10
+			// 
+			this.tts_Sep10.Name = "tts_Sep10";
+			this.tts_Sep10.Size = new System.Drawing.Size(177, 6);
+			// 
+			// btn_Settings_Printer_Zebra_Print
+			// 
+			this.btn_Settings_Printer_Zebra_Print.Name = "btn_Settings_Printer_Zebra_Print";
+			this.btn_Settings_Printer_Zebra_Print.Size = new System.Drawing.Size(180, 22);
+			this.btn_Settings_Printer_Zebra_Print.Text = "Print";
+			this.btn_Settings_Printer_Zebra_Print.Click += new System.EventHandler(this.btn_Settings_Printer_Zebra_Print_Click);
+			// 
+			// btn_Settings_Printer_General
+			// 
+			this.btn_Settings_Printer_General.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tst_Settings_Printer_GeneralTitle,
+            this.tts_Sep11,
+            this.btn_Settings_Printer_General_Selection,
+            this.tts_Sep12,
+            this.btn_Settings_Printer_General_Settings,
+            this.btn_Settings_Printer_General_Setup,
+            this.btn_Settings_Printer_General_Preview,
+            this.tts_Sep13,
+            this.btn_Settings_Printer_General_Print});
+			this.btn_Settings_Printer_General.Name = "btn_Settings_Printer_General";
+			this.btn_Settings_Printer_General.Size = new System.Drawing.Size(180, 22);
+			this.btn_Settings_Printer_General.Text = "General Printer";
+			this.btn_Settings_Printer_General.DropDownOpening += new System.EventHandler(this.btn_Settings_Printer_General_DropDownOpening);
+			// 
+			// tst_Settings_Printer_GeneralTitle
+			// 
+			this.tst_Settings_Printer_GeneralTitle.BackColor = System.Drawing.Color.White;
+			this.tst_Settings_Printer_GeneralTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.tst_Settings_Printer_GeneralTitle.Enabled = false;
+			this.tst_Settings_Printer_GeneralTitle.Name = "tst_Settings_Printer_GeneralTitle";
+			this.tst_Settings_Printer_GeneralTitle.ReadOnly = true;
+			this.tst_Settings_Printer_GeneralTitle.Size = new System.Drawing.Size(100, 16);
+			this.tst_Settings_Printer_GeneralTitle.Text = "--- GENERAL ---";
+			this.tst_Settings_Printer_GeneralTitle.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// tts_Sep11
+			// 
+			this.tts_Sep11.Name = "tts_Sep11";
+			this.tts_Sep11.Size = new System.Drawing.Size(157, 6);
+			// 
+			// btn_Settings_Printer_General_Selection
+			// 
+			this.btn_Settings_Printer_General_Selection.Name = "btn_Settings_Printer_General_Selection";
+			this.btn_Settings_Printer_General_Selection.Size = new System.Drawing.Size(160, 22);
+			this.btn_Settings_Printer_General_Selection.Text = "Printer Selection";
+			// 
+			// tts_Sep12
+			// 
+			this.tts_Sep12.Name = "tts_Sep12";
+			this.tts_Sep12.Size = new System.Drawing.Size(157, 6);
+			// 
+			// btn_Settings_Printer_General_Settings
+			// 
+			this.btn_Settings_Printer_General_Settings.Name = "btn_Settings_Printer_General_Settings";
+			this.btn_Settings_Printer_General_Settings.Size = new System.Drawing.Size(160, 22);
+			this.btn_Settings_Printer_General_Settings.Text = "Printer Settings";
+			// 
+			// btn_Settings_Printer_General_Setup
+			// 
+			this.btn_Settings_Printer_General_Setup.Name = "btn_Settings_Printer_General_Setup";
+			this.btn_Settings_Printer_General_Setup.Size = new System.Drawing.Size(160, 22);
+			this.btn_Settings_Printer_General_Setup.Text = "Page Setup";
+			// 
+			// btn_Settings_Printer_General_Preview
+			// 
+			this.btn_Settings_Printer_General_Preview.Name = "btn_Settings_Printer_General_Preview";
+			this.btn_Settings_Printer_General_Preview.Size = new System.Drawing.Size(160, 22);
+			this.btn_Settings_Printer_General_Preview.Text = "Print Preview";
+			// 
+			// tts_Sep13
+			// 
+			this.tts_Sep13.Name = "tts_Sep13";
+			this.tts_Sep13.Size = new System.Drawing.Size(157, 6);
+			// 
+			// btn_Settings_Printer_General_Print
+			// 
+			this.btn_Settings_Printer_General_Print.Name = "btn_Settings_Printer_General_Print";
+			this.btn_Settings_Printer_General_Print.Size = new System.Drawing.Size(160, 22);
+			this.btn_Settings_Printer_General_Print.Text = "Print";
+			// 
 			// btn_Settings_Misc
 			// 
 			this.btn_Settings_Misc.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -460,6 +642,17 @@
 			this.btn_Settings_Misc.Size = new System.Drawing.Size(216, 22);
 			this.btn_Settings_Misc.Text = "Misc Settings";
 			this.btn_Settings_Misc.DropDownOpening += new System.EventHandler(this.btn_Settings_Misc_DropDownOpening);
+			// 
+			// tst_Settings_MiscTitle
+			// 
+			this.tst_Settings_MiscTitle.BackColor = System.Drawing.Color.White;
+			this.tst_Settings_MiscTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.tst_Settings_MiscTitle.Enabled = false;
+			this.tst_Settings_MiscTitle.Name = "tst_Settings_MiscTitle";
+			this.tst_Settings_MiscTitle.ReadOnly = true;
+			this.tst_Settings_MiscTitle.Size = new System.Drawing.Size(100, 16);
+			this.tst_Settings_MiscTitle.Text = "--- MISC ---";
+			this.tst_Settings_MiscTitle.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// btn_Settings_Misc_Font
 			// 
@@ -541,7 +734,7 @@
 			this.pb_Image.BackColor = System.Drawing.SystemColors.AppWorkspace;
 			this.pb_Image.Location = new System.Drawing.Point(15, 34);
 			this.pb_Image.Name = "pb_Image";
-			this.pb_Image.Size = new System.Drawing.Size(368, 156);
+			this.pb_Image.Size = new System.Drawing.Size(368, 181);
 			this.pb_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pb_Image.TabIndex = 3;
 			this.pb_Image.TabStop = false;
@@ -566,12 +759,13 @@
 			// 
 			// btn_MoreMenu
 			// 
+			this.btn_MoreMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_MoreMenu.BackgroundImage = global::img2zpl.Properties.Resources.menu_2;
 			this.btn_MoreMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.btn_MoreMenu.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.btn_MoreMenu.FlatAppearance.BorderSize = 0;
 			this.btn_MoreMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btn_MoreMenu.Location = new System.Drawing.Point(745, 4);
+			this.btn_MoreMenu.Location = new System.Drawing.Point(749, 4);
 			this.btn_MoreMenu.Name = "btn_MoreMenu";
 			this.btn_MoreMenu.Size = new System.Drawing.Size(24, 24);
 			this.btn_MoreMenu.TabIndex = 27;
@@ -620,196 +814,22 @@
 			this.lbl_BlackLevelPercent.TabIndex = 26;
 			this.lbl_BlackLevelPercent.Text = "59%";
 			// 
-			// btn_Settings_Printer
+			// prnt_PrintPreviewDialog
 			// 
-			this.btn_Settings_Printer.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tst_Settings_PrinterTitle,
-            this.tts_Sep07,
-            this.btn_Settings_Printer_Zebra,
-            this.btn_Settings_Printer_General});
-			this.btn_Settings_Printer.Name = "btn_Settings_Printer";
-			this.btn_Settings_Printer.Size = new System.Drawing.Size(216, 22);
-			this.btn_Settings_Printer.Text = "Printer Settings";
-			// 
-			// btn_Settings_Printer_Zebra
-			// 
-			this.btn_Settings_Printer_Zebra.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tst_Settings_Printer_ZebraTitle,
-            this.tts_Sep08,
-            this.btn_Settings_Printer_Zebra_Selection,
-            this.tts_Sep09,
-            this.btn_Settings_Printer_Zebra_Settings,
-            this.btn_Settings_Printer_Zebra_Setup,
-            this.btn_Settings_Printer_Zebra_Preview,
-            this.tts_Sep10,
-            this.btn_Settings_Printer_Zebra_Print});
-			this.btn_Settings_Printer_Zebra.Name = "btn_Settings_Printer_Zebra";
-			this.btn_Settings_Printer_Zebra.Size = new System.Drawing.Size(180, 22);
-			this.btn_Settings_Printer_Zebra.Text = "Zebra Printer";
-			this.btn_Settings_Printer_Zebra.DropDownOpening += new System.EventHandler(this.btn_Settings_Printer_Zebra_DropDownOpening);
-			// 
-			// btn_Settings_Printer_General
-			// 
-			this.btn_Settings_Printer_General.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tst_Settings_Printer_GeneralTitle,
-            this.tts_Sep11,
-            this.btn_Settings_Printer_General_Selection,
-            this.tts_Sep12,
-            this.btn_Settings_Printer_General_Settings,
-            this.btn_Settings_Printer_General_Setup,
-            this.btn_Settings_Printer_General_Preview,
-            this.tts_Sep13,
-            this.btn_Settings_Printer_General_Print});
-			this.btn_Settings_Printer_General.Name = "btn_Settings_Printer_General";
-			this.btn_Settings_Printer_General.Size = new System.Drawing.Size(180, 22);
-			this.btn_Settings_Printer_General.Text = "General Printer";
-			this.btn_Settings_Printer_General.DropDownOpening += new System.EventHandler(this.btn_Settings_Printer_General_DropDownOpening);
-			// 
-			// btn_Settings_Printer_Zebra_Setup
-			// 
-			this.btn_Settings_Printer_Zebra_Setup.Name = "btn_Settings_Printer_Zebra_Setup";
-			this.btn_Settings_Printer_Zebra_Setup.Size = new System.Drawing.Size(180, 22);
-			this.btn_Settings_Printer_Zebra_Setup.Text = "Page Setup";
-			// 
-			// tst_Settings_PrinterTitle
-			// 
-			this.tst_Settings_PrinterTitle.BackColor = System.Drawing.Color.White;
-			this.tst_Settings_PrinterTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.tst_Settings_PrinterTitle.Enabled = false;
-			this.tst_Settings_PrinterTitle.Name = "tst_Settings_PrinterTitle";
-			this.tst_Settings_PrinterTitle.ReadOnly = true;
-			this.tst_Settings_PrinterTitle.Size = new System.Drawing.Size(100, 16);
-			this.tst_Settings_PrinterTitle.Text = "--- PRINTING ---";
-			this.tst_Settings_PrinterTitle.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// tst_Settings_MiscTitle
-			// 
-			this.tst_Settings_MiscTitle.BackColor = System.Drawing.Color.White;
-			this.tst_Settings_MiscTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.tst_Settings_MiscTitle.Enabled = false;
-			this.tst_Settings_MiscTitle.Name = "tst_Settings_MiscTitle";
-			this.tst_Settings_MiscTitle.ReadOnly = true;
-			this.tst_Settings_MiscTitle.Size = new System.Drawing.Size(100, 16);
-			this.tst_Settings_MiscTitle.Text = "--- MISC ---";
-			this.tst_Settings_MiscTitle.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// tst_Settings_Printer_ZebraTitle
-			// 
-			this.tst_Settings_Printer_ZebraTitle.BackColor = System.Drawing.Color.White;
-			this.tst_Settings_Printer_ZebraTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.tst_Settings_Printer_ZebraTitle.Enabled = false;
-			this.tst_Settings_Printer_ZebraTitle.Name = "tst_Settings_Printer_ZebraTitle";
-			this.tst_Settings_Printer_ZebraTitle.ReadOnly = true;
-			this.tst_Settings_Printer_ZebraTitle.Size = new System.Drawing.Size(100, 16);
-			this.tst_Settings_Printer_ZebraTitle.Text = "--- ZEBRA ---";
-			this.tst_Settings_Printer_ZebraTitle.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// tst_Settings_Printer_GeneralTitle
-			// 
-			this.tst_Settings_Printer_GeneralTitle.BackColor = System.Drawing.Color.White;
-			this.tst_Settings_Printer_GeneralTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.tst_Settings_Printer_GeneralTitle.Enabled = false;
-			this.tst_Settings_Printer_GeneralTitle.Name = "tst_Settings_Printer_GeneralTitle";
-			this.tst_Settings_Printer_GeneralTitle.ReadOnly = true;
-			this.tst_Settings_Printer_GeneralTitle.Size = new System.Drawing.Size(100, 16);
-			this.tst_Settings_Printer_GeneralTitle.Text = "--- GENERAL ---";
-			this.tst_Settings_Printer_GeneralTitle.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// btn_Settings_Printer_Zebra_Preview
-			// 
-			this.btn_Settings_Printer_Zebra_Preview.Name = "btn_Settings_Printer_Zebra_Preview";
-			this.btn_Settings_Printer_Zebra_Preview.Size = new System.Drawing.Size(180, 22);
-			this.btn_Settings_Printer_Zebra_Preview.Text = "Print Preview";
-			// 
-			// btn_Settings_Printer_Zebra_Selection
-			// 
-			this.btn_Settings_Printer_Zebra_Selection.Name = "btn_Settings_Printer_Zebra_Selection";
-			this.btn_Settings_Printer_Zebra_Selection.Size = new System.Drawing.Size(180, 22);
-			this.btn_Settings_Printer_Zebra_Selection.Text = "Printer Selection";
-			// 
-			// tts_Sep09
-			// 
-			this.tts_Sep09.Name = "tts_Sep09";
-			this.tts_Sep09.Size = new System.Drawing.Size(177, 6);
-			// 
-			// tts_Sep08
-			// 
-			this.tts_Sep08.Name = "tts_Sep08";
-			this.tts_Sep08.Size = new System.Drawing.Size(177, 6);
-			// 
-			// tts_Sep07
-			// 
-			this.tts_Sep07.Name = "tts_Sep07";
-			this.tts_Sep07.Size = new System.Drawing.Size(177, 6);
-			// 
-			// tts_Sep10
-			// 
-			this.tts_Sep10.Name = "tts_Sep10";
-			this.tts_Sep10.Size = new System.Drawing.Size(177, 6);
-			// 
-			// btn_Settings_Printer_Zebra_Print
-			// 
-			this.btn_Settings_Printer_Zebra_Print.Name = "btn_Settings_Printer_Zebra_Print";
-			this.btn_Settings_Printer_Zebra_Print.Size = new System.Drawing.Size(180, 22);
-			this.btn_Settings_Printer_Zebra_Print.Text = "Print";
-			// 
-			// tts_Sep11
-			// 
-			this.tts_Sep11.Name = "tts_Sep11";
-			this.tts_Sep11.Size = new System.Drawing.Size(177, 6);
-			// 
-			// btn_Settings_Printer_General_Selection
-			// 
-			this.btn_Settings_Printer_General_Selection.Name = "btn_Settings_Printer_General_Selection";
-			this.btn_Settings_Printer_General_Selection.Size = new System.Drawing.Size(180, 22);
-			this.btn_Settings_Printer_General_Selection.Text = "Printer Selection";
-			// 
-			// tts_Sep12
-			// 
-			this.tts_Sep12.Name = "tts_Sep12";
-			this.tts_Sep12.Size = new System.Drawing.Size(177, 6);
-			// 
-			// btn_Settings_Printer_General_Setup
-			// 
-			this.btn_Settings_Printer_General_Setup.Name = "btn_Settings_Printer_General_Setup";
-			this.btn_Settings_Printer_General_Setup.Size = new System.Drawing.Size(180, 22);
-			this.btn_Settings_Printer_General_Setup.Text = "Page Setup";
-			// 
-			// btn_Settings_Printer_General_Preview
-			// 
-			this.btn_Settings_Printer_General_Preview.Name = "btn_Settings_Printer_General_Preview";
-			this.btn_Settings_Printer_General_Preview.Size = new System.Drawing.Size(180, 22);
-			this.btn_Settings_Printer_General_Preview.Text = "Print Preview";
-			// 
-			// tts_Sep13
-			// 
-			this.tts_Sep13.Name = "tts_Sep13";
-			this.tts_Sep13.Size = new System.Drawing.Size(177, 6);
-			// 
-			// btn_Settings_Printer_General_Print
-			// 
-			this.btn_Settings_Printer_General_Print.Name = "btn_Settings_Printer_General_Print";
-			this.btn_Settings_Printer_General_Print.Size = new System.Drawing.Size(180, 22);
-			this.btn_Settings_Printer_General_Print.Text = "Print";
-			// 
-			// btn_Settings_Printer_Zebra_Settings
-			// 
-			this.btn_Settings_Printer_Zebra_Settings.Name = "btn_Settings_Printer_Zebra_Settings";
-			this.btn_Settings_Printer_Zebra_Settings.Size = new System.Drawing.Size(180, 22);
-			this.btn_Settings_Printer_Zebra_Settings.Text = "Printer Settings";
-			// 
-			// btn_Settings_Printer_General_Settings
-			// 
-			this.btn_Settings_Printer_General_Settings.Name = "btn_Settings_Printer_General_Settings";
-			this.btn_Settings_Printer_General_Settings.Size = new System.Drawing.Size(180, 22);
-			this.btn_Settings_Printer_General_Settings.Text = "Printer Settings";
+			this.prnt_PrintPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
+			this.prnt_PrintPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+			this.prnt_PrintPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
+			this.prnt_PrintPreviewDialog.Enabled = true;
+			this.prnt_PrintPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("prnt_PrintPreviewDialog.Icon")));
+			this.prnt_PrintPreviewDialog.Name = "prnt_PrintPreviewDialog";
+			this.prnt_PrintPreviewDialog.Visible = false;
 			// 
 			// Form1
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(784, 226);
+			this.ClientSize = new System.Drawing.Size(784, 251);
 			this.Controls.Add(this.rtb_Zebra);
 			this.Controls.Add(this.btn_SendToPrinter);
 			this.Controls.Add(this.btn_MoreMenu);
@@ -929,6 +949,9 @@
 		private System.Windows.Forms.ToolStripMenuItem btn_Settings_Printer_General_Preview;
 		private System.Windows.Forms.ToolStripSeparator tts_Sep13;
 		private System.Windows.Forms.ToolStripMenuItem btn_Settings_Printer_General_Print;
+		private System.Windows.Forms.PageSetupDialog prnt_PageSetupDialog;
+		private System.Drawing.Printing.PrintDocument prnt_PrintDocument;
+		private System.Windows.Forms.PrintPreviewDialog prnt_PrintPreviewDialog;
 	}
 }
 
