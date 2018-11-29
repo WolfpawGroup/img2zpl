@@ -25,6 +25,10 @@ namespace img2zpl
 		public bool loaded = false;
 		public bool menuOpened = false;
 		public bool invertColors = false;
+		public List<string> printers = new List<string>();
+		public string defaultZebraPrinter = "";
+		public string defaultGeneralPrinter = "";
+
 
 		public Form1()
 		{
@@ -70,6 +74,9 @@ namespace img2zpl
 			{
 				Size = new Size(Properties.Settings.Default.s_Width, Properties.Settings.Default.s_Height);
 			}
+
+			defaultGeneralPrinter = Properties.Settings.Default.s_DefaultGeneralPrinter;
+			defaultZebraPrinter = Properties.Settings.Default.s_DefaultZebraPrinter;
 
 			settingsApply();
 		}
@@ -329,7 +336,7 @@ namespace img2zpl
 
 		private void cm_Settings_MouseLeave(object sender, EventArgs e)
 		{
-			if (!btn_Settings_Misc.DropDown.Visible)
+			if (!btn_Settings_Misc.DropDown.Visible && !btn_Settings_Printer.Visible)
 			{
 				cm_Settings.Close();
 			}
@@ -587,6 +594,65 @@ namespace img2zpl
 			save();
 			settingsApply();
 			closecm();
+		}
+
+		public void printerAdd(string type, string printer)
+		{
+			ToolStripMenuItem p = new ToolStripMenuItem();
+			p.Text = printer;
+			
+			if(type == "z")
+			{
+				p.Click += P_Click;
+				btn_Settings_Printer_Zebra_Selection.DropDown.Items.Add(p);
+				if(defaultZebraPrinter.ToLower() == printer.ToLower())
+				{
+					p.Checked = true;
+				}
+			}
+			else
+			{
+				p.Click += P_Click1;
+				btn_Settings_Printer_General_Selection.DropDown.Items.Add(p);
+				if (defaultGeneralPrinter.ToLower() == printer.ToLower())
+				{
+					p.Checked = true;
+				}
+			}
+		}
+
+		private void P_Click1(object sender, EventArgs e)
+		{
+			defaultGeneralPrinter = (sender as ToolStripMenuItem).Text;
+			Properties.Settings.Default.s_DefaultGeneralPrinter = defaultGeneralPrinter;
+			save();
+		}
+
+		private void P_Click(object sender, EventArgs e)
+		{
+			defaultZebraPrinter = (sender as ToolStripMenuItem).Text;
+			Properties.Settings.Default.s_DefaultZebraPrinter = defaultZebraPrinter;
+			save();
+		}
+
+		private void btn_Settings_Printer_Zebra_DropDownOpening(object sender, EventArgs e)
+		{
+			btn_Settings_Printer_Zebra_Selection.DropDown.Items.Clear();
+			printers = new printer().getPrinterList().Cast<string>().ToList();
+			foreach(string s in printers)
+			{
+				printerAdd("z", s);
+			}
+		}
+
+		private void btn_Settings_Printer_General_DropDownOpening(object sender, EventArgs e)
+		{
+			btn_Settings_Printer_General_Selection.DropDown.Items.Clear();
+			printers = new printer().getPrinterList().Cast<string>().ToList();
+			foreach (string s in printers)
+			{
+				printerAdd("g", s);
+			}
 		}
 	}
 }

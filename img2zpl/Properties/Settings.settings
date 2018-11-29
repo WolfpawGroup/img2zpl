@@ -65,5 +65,11 @@
     <Setting Name="s_BlackLevel" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">59</Value>
     </Setting>
+    <Setting Name="s_DefaultZebraPrinter" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="s_DefaultGeneralPrinter" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

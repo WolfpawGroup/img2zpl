@@ -274,5 +274,29 @@ namespace img2zpl.Properties {
                 this["s_BlackLevel"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string s_DefaultZebraPrinter {
+            get {
+                return ((string)(this["s_DefaultZebraPrinter"]));
+            }
+            set {
+                this["s_DefaultZebraPrinter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string s_DefaultGeneralPrinter {
+            get {
+                return ((string)(this["s_DefaultGeneralPrinter"]));
+            }
+            set {
+                this["s_DefaultGeneralPrinter"] = value;
+            }
+        }
     }
 }
